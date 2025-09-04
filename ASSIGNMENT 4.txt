@@ -1,0 +1,30 @@
+ASSIGNMENT 4
+
+'''create a function to take the single argument
+
+create two nested functions
+
+(a) factorial
+
+(b) area of the rectangle
+
+return the result of both the nested functions outside he parent function
+'''
+
+side1 = int(input("Enter a number  "))
+side2 = 50
+def calc(side1):
+    def factorial():
+        res = 1
+        for i in range(1,side1+1):
+            res= i*res
+        return res
+    
+    def area():
+        area = side1*side2
+        return area
+    
+    return(factorial(), area())
+
+print(" factorial and area of given side is ", calc(side1))
+    
