@@ -1,0 +1,64 @@
+ASSIGNMENT 3 PYTHON
+
+#Q1. Create a tuple named product containing the following items: "Laptop", 50000, Black, "Samsung" and "Electronics". Print the tuple.
+gadgets = ("Laptop", 50000, "Black", "SAMSUNG", "Electronics")
+print(gadgets)
+
+#Q2. Access and print the second element of the tuple product.
+print(gadgets[1])
+
+#Q3. Slice and print the last two elements of the product tuple.
+print(gadgets[-2:])
+
+#Q4 Check whether "Electronics" is present in the product tuple and print a message.
+if "Electronics" in gadgets:
+    print("Electronics found at ", gadgets.index("Electronics"))
+else:
+    print("Not found")
+    
+#Q5. Create a tuple of 5 product prices: (1000, 1500, 1200, 1100, 900). Count how many times 1000 appears.
+prices=(1000, 1500, 1200, 1100, 900, 1000)
+
+print(" Number of times 1000 appears is ", prices.count(1000))
+
+
+#Q6 Find and print the maximum and minimum price from the prices tuple.
+print("Maximum price is ", max(prices))
+print("Minimum  price is ", min(prices))
+
+#Q7 Use a loop to print each item from the product tuple on a new line.
+for i in prices:
+    print(i)
+    
+#Q8.Convert the product tuple to a list. Change the price to 55000, then convert it back to a tuple. Print the updated tuple.
+prices_new = list(prices)
+prices_new.append(55000)
+prices = tuple(prices_new)
+print(prices)
+
+#Q9. Add a new item "In Stock" to the product tuple (simulate adding by concatenation)
+new_item = ("in stock",)
+product= prices+new_item
+print(product)
+
+#Q10. Remove "Electronics" from the product tuple (by converting to list, removing, and converting back).
+price_new = list(gadgets)
+price_new.remove("Electronics")
+gadgets = tuple(price_new)
+print(gadgets)
+
+#Q11. Unpack the tuple product into three variables and print each variable.
+tuple_to_unpack = ("Laptop", "Black", 55000)
+name, color, price = tuple_to_unpack
+print("Unpacking the tuple into variables:")
+print(f"Name: {name}")
+print(f"Color: {color}")
+print(f"Price: {price}\n")
+
+#Q12 Create a nested tuple that contains three product tuples inside it. Access and print the name of the second product in the nested tuple.
+nested_products = (("Laptop", 50000, "Black"),("Smartphone", 25000, "Silver"),("Keyboard", 2500, "White")
+)
+second_product_name = nested_products[1][0]
+print(f"The nested tuple is: {nested_products}")
+print(f"The name of the second product in the nested tuple is: {second_product_name}")
+
