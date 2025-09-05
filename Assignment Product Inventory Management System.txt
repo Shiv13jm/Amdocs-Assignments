@@ -1,0 +1,118 @@
+'''
+Problem Statement: Product Inventory Management System
+
+A retail store wants to digitally manage its inventory using Python.You are asked to design a program that allows the store to:
+
+1. Store product details
+2. Perform common operations like viewing, adding, updating, and calculating total inventory value
+The program should use functions, loops, lists, and tuples effectively.
+- Each product should have Name, Price, and Quantity.
+- Store this information as a tuple : (name, price, quantity).
+- Maintain a collection of products as a list of tuples.
+
+Example:
+
+products = [
+    ("Laptop", 50000, 10),
+    ("Mobile", 20000, 15),
+    ("Headphones", 1500, 25)
+]
+
+
+(a) Function to Display Products
+   - Create a function display_products() that:
+   - Iterates over the list of products (using a loop).
+   - Prints product details (name, price, quantity).
+
+
+(b) Function to Add a New Product
+   - Create a function add_product(name, price, qty) that:
+   - Takes product details as parameters.
+   - Adds the new product (tuple) into the products list.
+
+
+(c) Function to Update Stock Quantity
+   - Create a function update_stock(product_name, new_qty) that:
+   - Loops through the products list.
+   - Finds the product by name.
+   - Updates its quantity to the new value.
+
+
+(d) Function to Calculate Total Inventory Value
+   - Create a function total_value() that:
+   - Iterates over all products.
+   - Multiplies price × quantity for each product.
+   - Returns the sum of all values.
+
+
+Create a Menu-Driven Program (Loop Requirement)
+
+Use a while True loop to display a menu:
+
+1. Display Products
+2. Add Product
+3. Update Stock
+4. Show Total Inventory Value
+5. Exit
+
+
+Take user input for choice.
+
+Call the corresponding function.
+
+Exit when user selects option 5.
+'''
+
+products=[("Laptop", 50000, 10),("Mobile", 20000, 15),("Headphones", 1500, 25)]
+def display():
+    for i in products:
+        print("Name of the product is ", i[0] ,"\n Price of the product is ", i[1], "\n Quantity is ", i[2])
+        
+def add_products(products,name , price , quanity):
+    value =(name , price , quanity )
+    new_product= products.append(value)
+    products = new_product
+    print("Product added successfully")
+
+def update_stocks(product_name , new_price):
+    product_found= False
+    for idx, i in enumerate(products):
+        if i[0].lower() == product_name.lower():
+            product_found = True
+            products[idx] = (i[0],new_price , i[2])
+            print("\n Product updated successfully.\n")
+            break 
+    
+    if not product_found:
+            print(f"\n Error: Product '{product_name}' not found.\n")
+    
+def total_value():
+    total =0
+    for val in products:
+        total+= val[1]*val[2]
+    print("Total inventory value is ", total)    
+    
+print("1. Display Products \n 2. Add Product\n 3. Update Stock\n 4. Show Total Inventory Value\n5. Exit\n")
+
+
+while(True):
+    ch = int(input("Enter your choice "))
+    if ch == 1:
+        display()
+    elif ch ==2:
+        name= str(input("Enter name of new product"))
+        price = int(input("Enter the price of new product"))
+        quantity =int(input("enter the quantity of new product"))
+        add_products(products , name , price , quantity )
+    elif ch == 3:
+        pro_name = input("Enter the product name you want to update")
+        updated_value = int(input("Enter the updated price "))
+        update_stocks(pro_name , updated_value)
+    elif ch == 4:
+        total_value()
+    elif ch == 5:
+        print("Exiting the menu")
+        break
+    else:
+        print("Invalid option")
+        
