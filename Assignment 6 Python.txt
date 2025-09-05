@@ -1,0 +1,154 @@
+#1. Write a program that prints all even numbers from 10 to 20 (inclusive) using the range() function without using any loop.
+print("Even numbers in range 10 and 20 are :")
+for i in range(10 , 21):
+    print(i)
+
+#2. Write a program that keeps asking the user to enter a positive number. Stop only when the user enters 0. Ensure the user is asked at least once (simulate do-while).
+while(True):
+    num = int(input("Enter a positive number : "))
+    if num == 0:
+        break
+    print("Entered number is not zero so continue entering",num)
+    
+#3. Write a program using a while loop to calculate the factorial of a number entered by the user.
+num = int(input("Enter a number "))
+factorial= 1;
+while(num!=0):
+    factorial = factorial*num
+    num = num-1
+print("Factorial of entered number is ", factorial)
+
+'''4. Write a program to assign a grade based on the score:
+If score > 90: Grade A
+If score > 80: Grade B
+If score > 70: Grade C
+If score > 60: Grade D
+Else: Grade F
+Use nested if-else.
+'''
+marks = int(input("Enter marks "))
+if marks > 90:
+    grade ='A'
+elif marks >80 and marks <=90:
+    grade ='B'
+elif marks >70 and marks <=80:
+    grade ='C'
+elif marks >60 and marks <=70:
+    grade ='D'
+else:
+    grade='F'
+print("Your grade is " , grade)
+
+'''5. Write a program that asks the user to enter a number from 1 to 7 and prints the day of the week using match-case:
+1: Monday
+2: Tuesday
+...
+7: Sunday
+Any other number: Invalid input
+'''
+day_Number = int(input("Enter a number to find the day of the weak "))
+match (day_Number):
+    case 1 :
+        day = "Monday"
+    case 2 :
+        day = "Tuesday"
+    case 3 :
+        day = "Wednesday"
+    case 4 :
+        day = "Thursday"
+    case 5 :
+        day = "Friday"
+    case 6 :
+        day = "Saturday"
+    case 7 :
+        day = "Sunday"
+    case _ :
+        day ="Invalid"
+print(" Day of the week is ", day)
+
+
+# 6. Write a Python program that manages a list of student scores. Perform the following operations step-by-step:
+# --- Step 1: Create an empty list ---
+print("1. Creating an empty list for scores.")
+scores = []
+print(f"   Initial empty list: {scores}\n")
+
+# --- Step 2: Append scores ---
+print("2. Appending scores: 85, 90, 78, 92, 88")
+scores.append(85)
+scores.append(90)
+scores.append(78)
+scores.append(92)
+scores.append(88)
+print(f"   List after appending: {scores}\n")
+
+# --- Step 3: Insert a score ---
+print("3. Inserting the score 80 at index 2.")
+scores.insert(2, 80)
+print(f"   List after inserting: {scores}\n")
+
+# --- Step 4: Remove a score ---
+print("4. Removing the score 92.")
+scores.remove(92)
+print(f"   List after removing: {scores}\n")
+
+# --- Step 5: Sort the list ---
+print("5. Sorting the scores in ascending order.")
+scores.sort()
+print(f"   List after sorting: {scores}\n")
+
+# --- Step 6: Reverse the list ---
+print("6. Reversing the list.")
+scores.reverse()
+print(f"   List after reversing: {scores}\n")
+
+# --- Step 7: Find Maximum and Minimum ---
+print("7. Finding the maximum and minimum scores.")
+max_score = max(scores)
+min_score = min(scores)
+print(f"   Maximum score: {max_score}")
+print(f"   Minimum score: {min_score}\n")
+
+# --- Step 8: Check if an element exists ---
+print("8. Checking if the score 90 is in the list.")
+is_present = 90 in scores
+print(f"   Is 90 present in the list? {is_present}\n")
+
+# --- Step 9: Get the total number of scores ---
+print("9. Finding the total number of scores.")
+total_scores = len(scores)
+print(f"   Total number of scores: {total_scores}\n")
+
+# --- Step 10: Slice the list ---
+print("10. Slicing to get the first three scores.")
+first_three = scores[:3]
+print(f"    First three scores: {first_three}\n")
+
+# --- Step 11: Iterate and print each score ---
+print("11. Iterating through the list and printing each score:")
+for score in scores:
+    print(f"    - {score}")
+print("")
+
+# --- Step 12: Find the last element ---
+print("12. Finding the last element from the list.")
+last_element = scores[-1]
+print(f"    The last element is: {last_element}\n")
+
+# --- Step 13: Replace a score at an index ---
+print("13. Replacing the score at index 2 with a new score (81).")
+scores[2] = 81
+print(f"    List after replacement: {scores}\n")
+
+# --- Step 14: Create a copied list ---
+print("14. Creating a new copied list.")
+copied_scores = scores.copy()
+print(f"    Original list:  {scores}")
+print(f"    New copied list: {copied_scores}\n")
+
+# Modifying the original list to show the copy is independent
+scores.append(100)
+print("    Modified the original list to prove the copy is separate:")
+print(f"    Original list now:  {scores}")
+print(f"    Copied list remains: {copied_scores}")
+
