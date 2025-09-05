@@ -1,0 +1,136 @@
+import os
+
+# --- Constants for filenames and directory names ---
+filename = "students.txt"
+renamed_filename = "student_records.txt"
+directory_name = "SchoolData"
+
+def display_menu():
+    print("  Student Records Management System")
+    print("1. Write student details to a file")
+    print("2. Read and display the file")
+    print("3. Rename the file")
+    print("4. Create directory and move the file")
+    print("5. List files in the directory")
+    print("6. Delete the file from the directory")
+    print("7. Delete the directory")
+    print("8. Exit")
+    
+
+# 1) Write Operation
+def write_student_details():
+    try:
+        with open(filename, 'w') as f:
+            f.write("Name,RollNumber,Marks\n")
+            f.write("Alice,101,85\n")
+            f.write("Bob,102,92\n")
+            f.write("Charlie,103,78\n")
+        print(f" Success: '{filename}' created and data written.")
+    except IOError as e:
+        print(f"Error: Could not write to file. {e}")
+
+# 2) Read Operation
+def read_student_details():
+    try:
+        with open(filename, 'r') as f:
+            print("\n--- File Content ---")
+            print(f.read())
+            print("--------------------")
+    except FileNotFoundError:
+        print(f"Error: '{filename}' not found. Please create it first (Option 1).")
+    except IOError as e:
+        print(f"Error: Could not read file. {e}")
+
+# 3) Rename Operation
+def rename_student_file():
+    try:
+        os.rename(filename, renamed_filename)
+        print(f"Success: Renamed '{filename}' to '{renamed_filename}'.")
+    except FileNotFoundError:
+        print(f" Error: '{filename}' not found. Cannot rename.")
+    except FileExistsError:
+        print(f" Error: '{renamed_filename}' already exists.")
+
+# 4) Directory Operations: Create and Move
+def create_dir_and_move_file():
+      # Create directory
+    try:
+        if not os.path.exists(directory_name):
+            os.mkdir(directory_name)
+            print(f"Success: Directory '{directory_name}' created.")
+        else:
+            print(f"ℹDirectory '{directory_name}' already exists.")
+    except OSError as e:
+        print(f" Error: Could not create directory. {e}")
+        return
+
+    # Move file
+    try:
+        destination = os.path.join(directory_name, renamed_filename)
+        os.rename(renamed_filename, destination)
+        print(f"Success: Moved '{renamed_filename}' to '{directory_name}/'.")
+    except FileNotFoundError:
+        print(f"Error: '{renamed_filename}' not found. Cannot move.")
+    except OSError as e:
+        print(f"Error: Could not move file. {e}")
+
+# 5) List files in the directory
+def list_files_in_directory():
+      try:
+        files = os.listdir(directory_name)
+        if files:
+            print(f"\n--- Files in '{directory_name}' ---")
+            for file in files:
+                print(f"- {file}")
+            print("-----------------------------")
+        else:
+            print(f"The directory '{directory_name}' is empty.")
+      except FileNotFoundError:
+        print(f"Error: Directory '{directory_name}' not found.")
+
+# 6) Delete the file from the directory
+def delete_file_from_directory():
+    file_path = os.path.join(directory_name, renamed_filename)
+    try:
+        os.remove(file_path)
+        print(f"Success: Deleted '{renamed_filename}' from '{directory_name}'.")
+    except FileNotFoundError:
+        print(f"Error: File not found at '{file_path}'.")
+    except OSError as e:
+        print(f"Error: Could not delete file. {e}")
+
+# 7) Delete the directory
+def delete_directory():
+    try:
+        os.rmdir(directory_name)
+        print(f"Success: Directory '{directory_name}' deleted.")
+    except FileNotFoundError:
+        print(f" Error: Directory '{directory_name}' not found.")
+    except OSError:
+        print(f"Error: Directory '{directory_name}' is not empty. Cannot delete.")
+
+# Main program loop
+if __name__ == "__main__":
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-8): ")
+
+        if choice == '1':
+            write_student_details()
+        elif choice == '2':
+            read_student_details()
+        elif choice == '3':
+            rename_student_file()
+        elif choice == '4':
+            create_dir_and_move_file()
+        elif choice == '5':
+            list_files_in_directory()
+        elif choice == '6':
+            delete_file_from_directory()
+        elif choice == '7':
+            delete_directory()
+        elif choice == '8':
+            print("\nExiting!")
+            break
+        else:
+            print("\n Invalid choice. Please enter a number between 1 and 8.")
