@@ -1,0 +1,91 @@
+'''You are asked to design a Flight Management System in Python using exception handling.
+
+The system should:
+Read flight information from a file called flights.txt.
+- Each line has: flight_number available_seats price_per_ticket Example: AI101 50 6000
+Ask the user for:
+Flight number
+Number of tickets to book
+Implement the following exception rules:
+
+(a) Raise FlightNotFoundError (custom) if the entered flight number does not exist.
+
+(b) Raise SeatsUnavailableError (custom) if requested tickets exceed available seats.
+
+(c) Handle ValueError if user enters invalid input (like string instead of integer).
+
+(d) Handle ZeroDivisionError if user enters 0 tickets (while calculating discount per ticket).
+
+(e) Always close the file using finally.
+
+The program should print:
+
+Flight details
+Total booking cost
+Discount per ticket (total / tickets)
+
+Note**:
+Use nested try-except:
+Inner block for booking operations.
+'''
+flight_file = "flights.txt"
+with open ("flights.txt",'w') as f:
+    f.write("AI202 150 5500\n UK818 45 7200 \n 6E555 5 8150\n SG404 98 4300")
+    
+class FlightNotFound(Exception):
+    pass
+class SeatsUnavailableError(Exception):
+    pass
+
+def flightBookingSystem():
+    file = None
+    try:
+        file = open('flights.txt','r')
+        flights={}
+        for line in file:
+            flight_num , seats , price = line.strip().split()
+            flights[flight_num]= {'seats': int(seats),'price':int(price)}
+        
+        print("Flight Booking System ")
+        flight_no = input("Enter the flight number you want to book : ").strip().upper()
+        
+        try:
+            if flight_no not in flights:
+                raise FileNotFoundError(f"Flight '{flight_no} doesnt exist.")
+            flight = flights[flight_no]
+            print(f"\n Flight found : {flight_no}. Seats available are {flight['seats']}. Price is {flight['price']}")
+            
+            numOfTickets= int(input("Enter the number of tickets you want to book. "))
+             
+            if numOfTickets>flight['seats']:
+                raise SeatsUnavailableError(f"Only {flight['seats']} are available for booking.")
+            total_price = flight['price']*numOfTickets
+            
+            discount_per_ticket = total_price/numOfTickets
+            
+            print("Booking successful. \n")
+            print(f" Flight details are as follows: \n")
+            print(f"Flight number is {flight_no} \n")
+            print(f"Number of tickets booked :{numOfTickets}\n" )
+            print(f"Total cost of tickets booked :{total_price}\n" )
+            print(f" Discount per ticket (total / tickets) :{discount_per_ticket:.2f}\n" )
+        
+        except ZeroDivisionError:
+            print("\n Cannot book zero tickets")
+        except SeatsUnavailableError as e:
+            print(f"Booking failed : {e}")
+    
+    except FileNotFoundError:
+        print("\n The 'flights.txt ' could not be found. ")   
+    except FlightNotFound as e :
+        print("\n Flight number could not be found . ")
+    except Exception as e:
+        print(" \n An unexpected error occurred. ")
+    
+    finally :
+        if file is not None and not file.closed:
+            file.close()
+            print("\n File resources has been closed. ")
+
+if __name__ == "__main__":
+    flightBookingSystem()
