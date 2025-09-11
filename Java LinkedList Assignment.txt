@@ -1,0 +1,85 @@
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+//
+//Assignment 4:
+//Use LinkedList only in the below program
+//   - Add  6 months (May, June, July, August, April, November)
+//   - Add 'December' month as last
+//   - Add 'January' month as first
+//   - Add 'March' and then add 'Febuary' using the index based
+//   - Add 'September' and then add 'October' using the index based
+//
+//        (1) Print the linkedlist in such a way that proper order of months are displayed
+//        (2) Get all the even months and print them
+//        (3) Get all the odd months and print them
+//        (4) Use iterator to fetch and print all months
+//        (5) Print the first and last month of the year together
+//        (6) remove your birthday month from the linkedList and print it
+//        (7) Check whether this linkedList contains any winter month inside it or not?
+//        (8) Fetch the first and last months using peek()
+//        (9) Remove the first and last months using poll()
+//
+public class linkedlist {
+    public static void main(String[] args){
+          LinkedList<String> months = new LinkedList<>();
+          months.add("May");
+          months.add("June");
+          months.add("July");
+          months.add("August");
+          months.add("April");
+          months.add("November");
+          System.out.println(months);
+
+          months.addLast("December");
+          months.addFirst("January");
+          System.out.println(months);
+
+          months.add(1, "February");
+          months.add(2, "March");
+          months.add(8, "September");
+          months.add(9, "October");
+          System.out.println(months);
+          months.remove("April");
+          months.add(3,"April");
+          System.out.println("Proper order of months are " + months);
+
+          System.out.println("Even months are " );
+          for(int i = 1; i< months.size(); i+=2){
+                System.out.println(months.get(i));
+          }
+
+          System.out.println("Odd months are " );
+          for(int i = 0; i< months.size(); i+=2){
+                System.out.println(months.get(i));
+          }
+          System.out.println("Application of iterator  " );
+          Iterator<String> itr = months.iterator();
+
+          while(itr.hasNext()){
+                System.out.println(itr.next());
+          }
+
+          System.out.println("First month of the year is " + months.getFirst() + " and last month of the year is "+ months.getLast());
+          System.out.println(" My birthday month is " + months.get(2));
+          months.remove(2);
+
+          String[] winterMonths = {"December", "January", "February"};
+
+          for (String month : months) {
+                for (String winterMonth : winterMonths) {
+                      if (month.contains(winterMonth)) {
+                            System.out.println(winterMonth + " is the winter month. ");
+                      }
+                }
+          }
+
+          System.out.println(months);
+          System.out.println("First month of the year is " + months.peekFirst() + " and last month of the year is "+ months.peekLast());
+
+          System.out.println(" Removing First month of the year is " + months.pollFirst() + " and last month of the year is "+ months.pollLast());
+          System.out.println(months);
+    }
+}
